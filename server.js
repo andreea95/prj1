@@ -1,9 +1,9 @@
 var express = require("express")
 var Sequelize = require("sequelize")
-var nodeadmin = require(“nodeadmin")
+var nodeadmin = require("nodeadmin")
 
 //connect to mysql database
-var sequelize = new Sequelize(‘manager_contacte', 'root', '', {
+var sequelize = new Sequelize('manager_contacte', 'root', '', {
     dialect:'mysql',
     host:'localhost'
 })
@@ -17,10 +17,10 @@ var Person = sequelize.define('person', {
     nume: Sequelize.STRING,
     domiciuliu: Sequelize.STRING,
     porecla: Sequelize.STRING,
-    birthday: Sequalize.DATE
+    birthday: Sequelize.DATE
 })
 
-var Contact=sequalize.define('contact', {
+var Contact=sequelize.define('contact', {
 telefon: Sequelize.STRING,
  person_id: Sequelize.INTEGER,
 telefon_secundar: Sequelize.STRING,
@@ -28,6 +28,7 @@ e_mail : Sequelize.STRING })
 
 
 Person.hasOne(Contact)
+var app = express()
 
 app.use('/nodeamin', nodeadmin(app))
 
@@ -110,7 +111,7 @@ app.get('/contact', function(request, response) {
 })
 
 app.get('/contact/:id', function(request, response) {
-    Products.findById(request.params.id).then(
+    Contact.findById(request.params.id).then(
             function(contact) {
                 response.status(200).send(contact)
             }
@@ -118,16 +119,16 @@ app.get('/contact/:id', function(request, response) {
 })
 
 app.post('/contact', function(request, response) {
-    Products.create(request.body).then(function(contact) {
+    Contact.create(request.body).then(function(contact) {
         response.status(201).send(contact)
     })
 })
 
 app.put('/contact/:id', function(request, response) {
     Contact.findById(request.params.id).then(function(contact) {
-        if(product) {
+        if(contact) {
             contact.update(request.body).then(function(contact){
-                response.status(201).send(product)
+                response.status(201).send(contact)
             }).catch(function(error) {
                 response.status(200).send(error)
             })
@@ -138,7 +139,7 @@ app.put('/contact/:id', function(request, response) {
 })
 
 app.delete('/contact/:id', function(request, response) {
-    Products.findById(request.params.id).then(function(contact) {
+    Contact.findById(request.params.id).then(function(contact) {
         if(contact) {
             contact.destroy().then(function(){
                 response.status(204).send()
