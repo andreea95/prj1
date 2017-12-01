@@ -1,0 +1,31 @@
+{
+  "name": "manager_contacte",
+  "version": "1.0.0",
+  "description": "prof of concept for a SPA and  nodejs RESTful api ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreea95/prj1"
+  },
+  "keywords": [
+    "RESTful",
+    "api",
+    "nodejs"
+   
+  ],
+  "author": "andreea",
+  "license": "ISC",
+  "bugs": {
+   
+  },
+ 
+  "dependencies": {
+    "express": "^4.16.2",
+    "mysql2": "^1.4.2",
+    "nodeadmin": "^0.1.2",
+    "sequelize": "^4.22.5"
+  }
+}
